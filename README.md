@@ -17,7 +17,7 @@ pip install -r requirements.txt
 ```bash
 python train_ipm.py regularization_factor max_iterations 'seed_file.npy'
 ```
-`regularization_factor` can be any non-negative real number and determines the amount of regularization of the parameters of the model, `max_iterations` determines the total number of iterations of the interior point method, and 'seed_file.npy' initializes the quadratic program. If no seed is available use `'None'` instead and default initialization is used. At each 10 iterations model parameters is saved to `best_seed.npy` and can be used for prediction and initialization.
+`regularization_factor` can be any non-negative real number and determines the amount of regularization of the parameters of the model, `max_iterations` determines the total number of iterations of the interior point method, and `'seed_file.npy'` initializes the quadratic program. If no seed is available use `'None'` instead and default initialization is used. At each 10 iterations model parameters is saved to `best_seed.npy` and can be used for prediction and initialization.
 
 - To train SVM using ellipsoid method:
 ```bash
