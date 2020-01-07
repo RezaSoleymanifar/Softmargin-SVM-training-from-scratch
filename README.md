@@ -1,5 +1,5 @@
 This project runs a Support Vector Machine model to classify breast cancer tumors using Breast Cancer Wisconsin (Diagnostic) dataset. You can find the dataset 
-[here](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data). This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using barrier interior point method with Newton steps, for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms is provided in `Training Documentation.ipynb` notebook.
+[here](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)). This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using barrier interior point method with Newton steps, for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms is provided in `Training Documentation.ipynb` notebook.
 
 To clone the project use:
 ```bash
@@ -12,120 +12,47 @@ To install required packages run:
 pip install -r requirements.txt
 ```
 
-- Start training using interior point method.
+- Start training using interior point method:
 
 ```bash
 python train_ipm.py regularization_factor max_iterations 'seed_file.npy'
 ```
-`regularization_factor` can be any real number and determines the amount of regularization f the parameters of the model, `max_iterations` determines the total number of iterations of the interior point method, and 'seed_file.npy' initializes the quadratic program. If no seed is available use `'None'` instead and default initialization is used.
+`regularization_factor` can be any non-negative real number and determines the amount of regularization of the parameters of the model, `max_iterations` determines the total number of iterations of the interior point method, and 'seed_file.npy' initializes the quadratic program. If no seed is available use `'None'` instead and default initialization is used. At each 10 iterations model parameters is saved to `best_seed.npy` and can be used for prediction and initialization.
 
-Note this replaces the pretrained pipeline `pipeline_full.pkl`. Training and cross-validation is parallelized between all CPU cores. This can take several minutes depending on your system.
+- To train SVM using ellipsoid method:
+```bash
+python train_elps.py regularization_factor max_iterations 'seed_file.npy'
+```
 
-- Start evaluation. 
+Model parameters here are saved to `best_seed_elps.npy`.
 
-<!--([pretrained model](https://github.com/tensorlayer/srgan/releases/tag/1.2.0) for DIV2K)-->
+- To make predictions:
 
 ```bash
-python predict.py 'test_csv_file_path' 
+python predict.py 'seed_file.npy'
 ```
+An accuracy score is reported and predictions are save to `predictions.csv` file.
 
 This will generate a `predictions.csv` file in current directory and prints the resulting RMSLE.
 
-### Model Description
-
-We use a stacking ensemble of random forest, extremely randomized trees, gradient boosted trees and a multilayer perceptron to predict the sales prices of homes in the dataset. The figure bellow can further explain how the model works. Data is initially passed through preprocessing pipelines that handle imputation of missing values, encoding categorical features and finally standardization of all features.
-
-Features are then projected onto a lower dimensional space using PCA and data is fed into above
-mentioned models. Each model generates its predicted labels and finally a linear regressor is trained to map these predictions onto the final labels. This practice--training a model on top of an ensemble, to aggregate the results of base models--is known as stacking.
-
-<!--- <a href="http://tensorlayer.readthedocs.io">--->
-<div align="center">
-	<img src="img/model.jpeg" width="50%" height="10%"/>
-</div>
-</a>
-
-__Results__: This model able to achieve a combined final RMSLE of 0.1141 on test dataset.
+__Results__: This model able to achieve an accuracy score of $96%$ using interior point method and $94%$ using ellipsoid method.
 
 ### Data Description
 
 
-- SalePrice - the property's sale price in dollars. This is the target variable that you're trying to predict.
-- MSSubClass: The building class
-- MSZoning: The general zoning classification
-- LotFrontage: Linear feet of street connected to property
-- LotArea: Lot size in square feet
-- Street: Type of road access
-- Alley: Type of alley access
-- LotShape: General shape of property
-- LandContour: Flatness of the property
-- Utilities: Type of utilities available
-- LotConfig: Lot configuration
-- LandSlope: Slope of property
-- Neighborhood: Physical locations within Ames city limits
-- Condition1: Proximity to main road or railroad
-- Condition2: Proximity to main road or railroad (if a second is present)
-- BldgType: Type of dwelling
-- HouseStyle: Style of dwelling
-- OverallQual: Overall material and finish quality
-- OverallCond: Overall condition rating
-- YearBuilt: Original construction date
-- YearRemodAdd: Remodel date
-- RoofStyle: Type of roof
-- RoofMatl: Roof material
-- Exterior1st: Exterior covering on house
-- Exterior2nd: Exterior covering on house (if more than one material)
-- MasVnrType: Masonry veneer type
-- MasVnrArea: Masonry veneer area in square feet
-- ExterQual: Exterior material quality
-- ExterCond: Present condition of the material on the exterior
-- Foundation: Type of foundation
-- BsmtQual: Height of the basement
-- BsmtCond: General condition of the basement
-- BsmtExposure: Walkout or garden level basement walls
-- BsmtFinType1: Quality of basement finished area
-- BsmtFinSF1: Type 1 finished square feet
-- BsmtFinType2: Quality of second finished area (if present)
-- BsmtFinSF2: Type 2 finished square feet
-- BsmtUnfSF: Unfinished square feet of basement area
-- TotalBsmtSF: Total square feet of basement area
-- Heating: Type of heating
-- HeatingQC: Heating quality and condition
-- CentralAir: Central air conditioning
-- Electrical: Electrical system
-- 1stFlrSF: First Floor square feet
-- 2ndFlrSF: Second floor square feet
-- LowQualFinSF: Low quality finished square feet (all floors)
-- GrLivArea: Above grade (ground) living area square feet
-- BsmtFullBath: Basement full bathrooms
-- BsmtHalfBath: Basement half bathrooms
-- FullBath: Full bathrooms above grade
-- HalfBath: Half baths above grade
-- Bedroom: Number of bedrooms above basement level
-- Kitchen: Number of kitchens
-- KitchenQual: Kitchen quality
-- TotRmsAbvGrd: Total rooms above grade (does not include bathrooms)
-- Functional: Home functionality rating
-- Fireplaces: Number of fireplaces
-- FireplaceQu: Fireplace quality
-- GarageType: Garage location
-- GarageYrBlt: Year garage was built
-- GarageFinish: Interior finish of the garage
-- GarageCars: Size of garage in car capacity
-- GarageArea: Size of garage in square feet
-- GarageQual: Garage quality
-- GarageCond: Garage condition
-- PavedDrive: Paved driveway
-- WoodDeckSF: Wood deck area in square feet
-- OpenPorchSF: Open porch area in square feet
-- EnclosedPorch: Enclosed porch area in square feet
-- 3SsnPorch: Three season porch area in square feet
-- ScreenPorch: Screen porch area in square feet
-- PoolArea: Pool area in square feet
-- PoolQC: Pool quality
-- Fence: Fence quality
-- MiscFeature: Miscellaneous feature not covered in other categories
-- MiscVal: $Value of miscellaneous feature
-- MoSold: Month Sold
-- YrSold: Year Sold
-- SaleType: Type of sale
-- SaleCondition: Condition of sale
+1) ID number 
+2) Diagnosis (M = malignant, B = benign) 
+3-32) 
+
+Ten real-valued features are computed for each cell nucleus: 
+
+a) radius (mean of distances from center to points on the perimeter) 
+b) texture (standard deviation of gray-scale values) 
+c) perimeter 
+d) area 
+e) smoothness (local variation in radius lengths) 
+f) compactness (perimeter^2 / area - 1.0) 
+g) concavity (severity of concave portions of the contour) 
+h) concave points (number of concave portions of the contour) 
+i) symmetry 
+j) fractal dimension ("coastline approximation" - 1)
