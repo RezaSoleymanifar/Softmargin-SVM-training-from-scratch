@@ -1,26 +1,23 @@
 This project runs a Support Vector Machine model to classify breast cancer tumors using Breast Cancer Wisconsin (Diagnostic) dataset. You can find the dataset 
-[here](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data). This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using interior point method for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms is provided in `Training Documentation.ipynb` notebook.
-
-```bash
-kaggle competitions download -c house-prices-advanced-regression-techniques
-```
+[here](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data). This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using barrier interior point method with Newton steps, for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms is provided in `Training Documentation.ipynb` notebook.
 
 To clone the project use:
 ```bash
 git clone https://github.com/RezaSoleymanifar/House-Prices-Advanced-Regression-Techniques-Kaggle-Competition..git
 ```
 
-This project is run entirely on [scikit-learn](https://scikit-learn.org/stable/). To install required packages run:
+To install required packages run:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-- Start training.
+- Start training using interior point method.
 
 ```bash
-python train.py 'train_csv_file_path'
+python train_ipm.py regularization_factor max_iterations 'seed_file.npy'
 ```
+`regularization_factor` can be any real number and determines the amount of regularization f the parameters of the model, `max_iterations` determines the total number of iterations of the interior point method, and 'seed_file.npy' initializes the quadratic program. If no seed is available use `'None'` instead and default initialization is used.
 
 Note this replaces the pretrained pipeline `pipeline_full.pkl`. Training and cross-validation is parallelized between all CPU cores. This can take several minutes depending on your system.
 
