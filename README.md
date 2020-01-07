@@ -33,9 +33,7 @@ python predict.py 'seed_file.npy'
 ```
 An accuracy score is reported and predictions are save to `predictions.csv` file.
 
-This will generate a `predictions.csv` file in current directory and prints the resulting RMSLE.
-
-__Results__: This model able to achieve an accuracy score of $96%$ using interior point method and $94%$ using ellipsoid method.
+__Results__: This model able to achieve an accuracy score of 96% using interior point method and 94% using ellipsoid method.
 
 ### Data Description
 
@@ -46,13 +44,13 @@ __Results__: This model able to achieve an accuracy score of $96%$ using interio
 
 Ten real-valued features are computed for each cell nucleus: 
 
-a) radius (mean of distances from center to points on the perimeter) 
-b) texture (standard deviation of gray-scale values) 
-c) perimeter 
-d) area 
-e) smoothness (local variation in radius lengths) 
-f) compactness (perimeter^2 / area - 1.0) 
-g) concavity (severity of concave portions of the contour) 
-h) concave points (number of concave portions of the contour) 
-i) symmetry 
-j) fractal dimension ("coastline approximation" - 1)
+- radius (mean of distances from center to points on the perimeter) 
+- texture (standard deviation of gray-scale values) 
+- perimeter 
+- area 
+- smoothness (local variation in radius lengths) 
+- compactness (perimeter^2 / area - 1.0) 
+- concavity (severity of concave portions of the contour) 
+- concave points (number of concave portions of the contour) 
+- symmetry 
+- fractal dimension ("coastline approximation" - 1)
