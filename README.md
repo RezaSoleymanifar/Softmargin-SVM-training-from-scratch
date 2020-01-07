@@ -3,7 +3,7 @@ This project runs a Support Vector Machine model to classify breast cancer tumor
 
 <!--- <a href="http://tensorlayer.readthedocs.io">--->
 <div align="center">
-	<img src="data.jpeg" width="50%" height="10%"/>
+	<img src="data.jpeg" width="10%" height="10%"/>
 </div>
 </a>
 
