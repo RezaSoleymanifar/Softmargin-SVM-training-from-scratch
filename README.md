@@ -1,7 +1,5 @@
-## House Prices Advanced Regression Techniques
-
-This project runs a Machine Learning ensemble model to predict house sale prices in Ames, Iowa. You can find the dataset 
-[here](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data). If you have `kaggle` installed you can simply run:
+This project runs a Support Vector Machine model to classify breast cancer tumors using Breast Cancer Wisconsin (Diagnostic) dataset. You can find the dataset 
+[here](https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data). This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using interior point method for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms are provided in `Training Documentation'.
 
 ```bash
 kaggle competitions download -c house-prices-advanced-regression-techniques
