@@ -3,7 +3,7 @@ This project runs a Support Vector Machine model to classify breast cancer tumor
 
 To clone the project use:
 ```bash
-git clone https://github.com/RezaSoleymanifar/House-Prices-Advanced-Regression-Techniques-Kaggle-Competition..git
+git clone https://github.com/RezaSoleymanifar/Softmargin-SVM-training-from-scratch.git
 ```
 
 To install required packages run:
