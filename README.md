@@ -1,4 +1,4 @@
-
+## Description
 
 This project runs a Support Vector Machine model to classify breast cancer tumors using Breast Cancer Wisconsin (Diagnostic) dataset. You can find the dataset 
 [here](https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)).
@@ -8,7 +8,7 @@ This project runs a Support Vector Machine model to classify breast cancer tumor
 	<img src="data.jpeg" width="20%" height="20%"/>
 </div>
 </a>
-#Description
+
 
 This project is done from scratch and without use of any ML packages. Feel free to load your own datasets to train your own models. Two training methods are provided: (1) training using barrier interior point method with Newton steps, for optimization of quadratic programs and (2) ellipsoid method. Information on the details of implementations of these algorithms is provided in `Training Documentation.ipynb` notebook.
 
