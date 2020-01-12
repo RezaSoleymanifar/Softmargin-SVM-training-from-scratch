@@ -5,7 +5,7 @@ This project runs a Support Vector Machine model to classify breast cancer tumor
 
 <!--- <a href="http://tensorlayer.readthedocs.io">--->
 <div align="center">
-	<img src="data.jpeg" width="20%" height="20%"/>
+	<img src="img/data.jpeg" width="20%" height="20%"/>
 </div>
 </a>
 
